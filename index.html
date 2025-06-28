@@ -800,26 +800,38 @@ src="https://www.facebook.com/tr?id=1577926756159812&ev=PageView&noscript=1"
     }
 
     /* Order Button */
+.order-button-container {
+    position: fixed;
+    bottom: 10px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: 95%;
+    max-width: 390px;
+    transform: translateY(100%);
+    opacity: 0;
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    z-index: 999;
+    font-size: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: transform 0.4s ease, opacity 0.4s ease;
+    height: 45px;
+}
+
+/* মোবাইলে 100% উইডথ এবং fixed নিচে রাখা */
+@media (max-width: 768px) {
     .order-button-container {
-        position: fixed;
-        bottom: 10px;
+        width: 100%;
         left: 0;
         right: 0;
-        margin: 0 auto;
-        width: 95%;
-        max-width: 390px;
-        transform: translateY(100%);
-        opacity: 0;
-        box-shadow: 0 5px 12px rgba(0, 0, 0, 0.1);
-        border-radius: 8px;
-        z-index: 999;
-        font-size: 12px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        transition: transform 0.4s ease, opacity 0.4s ease;
-        height: 45px;
+        bottom: 0;
+        border-radius: 0; /* মোবাইলে ফুল উইডথ হলে কর্নার রাউন্ড না রাখাই ভালো */
     }
+}
+
 
     .order-button-container.active {
         transform: translateY(0);
