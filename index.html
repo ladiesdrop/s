@@ -2277,6 +2277,60 @@ src="https://www.facebook.com/tr?id=1577926756159812&ev=PageView&noscript=1"
             width: 280px;
         }
     }
+
+/* Footer Menu Styles */
+.footer-menu {
+    background-color: var(--dark-color);
+    padding: 15px 0;
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+}
+
+.footer-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 0.85rem;
+    padding: 5px 10px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: var(--accent-color);
+    background-color: rgba(255,255,255,0.1);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .footer-links {
+        gap: 10px;
+    }
+    
+    .footer-links a {
+        font-size: 0.8rem;
+        padding: 4px 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer-links {
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+    }
+    
+    .footer-links a {
+        width: 100%;
+        text-align: center;
+        padding: 8px;
+    }
+}
 </style>
 
 </head>
@@ -2586,7 +2640,18 @@ src="https://www.facebook.com/tr?id=1577926756159812&ev=PageView&noscript=1"
         </div>
     </footer>
 
-xxxxxxxxxxxxxxxxxxxxxx
+<!-- Footer Menu -->
+<div class="footer-menu">
+    <div class="container">
+        <div class="footer-links">
+            <a href="terms-conditions.html">Terms & Conditions</a>
+            <a href="order-policy.html">Order Policy</a>
+            <a href="privacy-policy.html">Privacy Policy</a>
+            <a href="return-policy.html">Return Policy</a>
+            <a href="shipping-policy.html">Shipping Policy</a>
+        </div>
+    </div>
+</div>
 
     <!-- Order Button -->
     <div class="order-button-container" id="orderButtonContainer">
