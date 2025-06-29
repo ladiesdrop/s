@@ -2324,6 +2324,50 @@ src="https://www.facebook.com/tr?id=1577926756159812&ev=PageView&noscript=1"
   0%, 100% { opacity: 0; }
   50% { opacity: 1; }
 }
+
+/* কনফার্ম বাটন ব্লিঙ্ক  */
+
+/* === Confirm Button Attraction Animation === */
+@keyframes pulseConfirm {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 rgba(255, 107, 139, 0.5);
+    background-color: var(--primary-color);
+  }
+  50% {
+    transform: scale(1.08);
+    box-shadow: 0 0 20px rgba(255, 107, 139, 0.9);
+    background-color: var(--dark-color);
+  }
+}
+
+.btn-submit.attract {
+  animation: pulseConfirm 1.4s infinite;
+  font-weight: bold;
+  position: relative;
+  z-index: 1;
+}
+
+.btn-submit.attract::after {
+  content: "👇 এই বাটনে ক্লিক করে!";
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--dark-color);
+  color: white;
+  padding: 5px 10px;
+  font-size: 0.8rem;
+  border-radius: 5px;
+  animation: fadeInOut 2.5s infinite;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+@keyframes fadeInOut {
+  0%, 100% { opacity: 0; }
+  50% { opacity: 1; }
+}
 </style>
 
 </head>
@@ -5466,6 +5510,32 @@ function updateCartCount() {
         }
     });
 }
+</script>
+
+<script>
+function activateConfirmButtonAttract() {
+  const confirmButton = document.querySelector(".btn-submit");
+  if (confirmButton && !confirmButton.classList.contains("attract")) {
+    confirmButton.classList.add("attract");
+  }
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  const modal = document.querySelector(".checkout-modal");
+
+  const observer = new MutationObserver(() => {
+    if (modal && modal.classList.contains("active")) {
+      activateConfirmButtonAttract();
+    }
+  });
+
+  if (modal) {
+    observer.observe(modal, {
+      attributes: true,
+      attributeFilter: ['class']
+    });
+  }
+});
 </script>
 
 <!-- Histats.com  START  (aync)-->
