@@ -5462,55 +5462,7 @@ src="https://www.facebook.com/tr?id=1577926756159812&ev=PageView&noscript=1"
   header.style.transition = 'transform 0.3s ease';
 </script>
 
-<script>
-function setupOrderButtonBlink() {
-    const orderButton = document.getElementById('orderButton');
 
-    if (!orderButton.classList.contains('blink')) {
-        orderButton.classList.add('blink');
-    }
-}
-
-function removeOrderButtonBlink() {
-    const orderButton = document.getElementById('orderButton');
-    orderButton.classList.remove('blink');
-}
-
-function updateCartCount() {
-    const count = cart.reduce((total, item) => total + item.quantity, 0);
-    cartCount.textContent = count;
-
-    if (count > 0) {
-        orderButtonContainer.classList.add('active');
-        setupOrderButtonBlink();
-    } else {
-        orderButtonContainer.classList.remove('active');
-        removeOrderButtonBlink();
-    }
-
-    // Update order summary
-    orderSummaryCount.textContent = count;
-    orderSummaryTotal.textContent = calculateTotal() + '৳';
-
-    document.querySelectorAll('.product-card').forEach(card => {
-        const productId = parseInt(card.querySelector('button').getAttribute('data-id'));
-        if (cart.some(item => item.id === productId)) {
-            card.classList.add('in-cart');
-        } else {
-            card.classList.remove('in-cart');
-        }
-    });
-
-    document.querySelectorAll('.related-product-card').forEach(card => {
-        const productId = parseInt(card.querySelector('button').getAttribute('data-id'));
-        if (cart.some(item => item.id === productId)) {
-            card.classList.add('in-cart');
-        } else {
-            card.classList.remove('in-cart');
-        }
-    });
-}
-</script>
 
 <script>
 function activateConfirmButtonAttract() {
