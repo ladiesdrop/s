@@ -2368,6 +2368,76 @@ src="https://www.facebook.com/tr?id=1577926756159812&ev=PageView&noscript=1"
   0%, 100% { opacity: 0; }
   50% { opacity: 1; }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@keyframes attractBlink {
+  0%, 100% {
+    opacity: 1;
+    background-color: var(--primary-color, #FF4081);
+    transform: scale(1);
+    box-shadow: 0 0 0px rgba(255, 107, 139, 0.4);
+  }
+  25% {
+    transform: scale(1.05);
+    box-shadow: 0 0 10px rgba(255, 107, 139, 0.6);
+  }
+  50% {
+    background-color: var(--dark-color, #C2185B);
+    transform: scale(1.1);
+    box-shadow: 0 0 20px rgba(255, 107, 139, 0.8);
+  }
+  75% {
+    transform: scale(1.05);
+    box-shadow: 0 0 10px rgba(255, 107, 139, 0.6);
+  }
+}
+
+.order-button.blink {
+  animation: attractBlink 1.2s infinite;
+  font-weight: 700;
+  position: relative;
+  z-index: 1;
+}
+
+.order-button.blink::after {
+  content: "এখানে ক্লিক করে!";
+  position: absolute;
+  top: -28px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--dark-color, #C2185B);
+  color: white;
+  padding: 3px 10px;
+  border-radius: 5px;
+  font-size: 0.8rem;
+  white-space: nowrap;
+  animation: fadeInOut 2s infinite;
+  font-weight: bold;
+}
+
+@keyframes fadeInOut {
+  0%, 100% { opacity: 0; }
+  50% { opacity: 1; }
+}
+
 </style>
 
 </head>
@@ -5489,6 +5559,25 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 </script>
+
+
+
+
+
+
+
+
+
+
+
+
+<Script>
+document.addEventListener("DOMContentLoaded", function () {
+  const orderBtn = document.getElementById("orderButton");
+  orderBtn.classList.add("blink");
+});
+
+</Script>
 
 <!-- Histats.com  START  (aync)-->
 	<script type="text/javascript">var _Hasync= _Hasync|| [];
