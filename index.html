@@ -2272,6 +2272,58 @@ src="https://www.facebook.com/tr?id=1577926756159812&ev=PageView&noscript=1"
         padding: 8px;
     }
 }
+
+/* ব্লিঙ্ক বাটন */
+
+@keyframes attractBlink {
+  0%, 100% {
+    opacity: 1;
+    background-color: var(--primary-color);
+    transform: scale(1);
+    box-shadow: 0 0 0px rgba(255, 107, 139, 0.4);
+  }
+  25% {
+    transform: scale(1.05);
+    box-shadow: 0 0 10px rgba(255, 107, 139, 0.6);
+  }
+  50% {
+    background-color: var(--dark-color);
+    transform: scale(1.1);
+    box-shadow: 0 0 20px rgba(255, 107, 139, 0.8);
+  }
+  75% {
+    transform: scale(1.05);
+    box-shadow: 0 0 10px rgba(255, 107, 139, 0.6);
+  }
+}
+
+.order-button.blink {
+  animation: attractBlink 1.2s infinite;
+  font-weight: 700;
+  position: relative;
+  z-index: 1;
+}
+
+.order-button.blink::after {
+  content: "এখানে ক্লিক করে!";
+  position: absolute;
+  top: -28px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--dark-color);
+  color: white;
+  padding: 3px 10px;
+  border-radius: 5px;
+  font-size: 0.8rem;
+  white-space: nowrap;
+  animation: fadeInOut 2s infinite;
+  font-weight: bold;
+}
+
+@keyframes fadeInOut {
+  0%, 100% { opacity: 0; }
+  50% { opacity: 1; }
+}
 </style>
 
 </head>
@@ -5366,6 +5418,55 @@ src="https://www.facebook.com/tr?id=1577926756159812&ev=PageView&noscript=1"
   header.style.transition = 'transform 0.3s ease';
 </script>
 
+<script>
+function setupOrderButtonBlink() {
+    const orderButton = document.getElementById('orderButton');
+
+    if (!orderButton.classList.contains('blink')) {
+        orderButton.classList.add('blink');
+    }
+}
+
+function removeOrderButtonBlink() {
+    const orderButton = document.getElementById('orderButton');
+    orderButton.classList.remove('blink');
+}
+
+function updateCartCount() {
+    const count = cart.reduce((total, item) => total + item.quantity, 0);
+    cartCount.textContent = count;
+
+    if (count > 0) {
+        orderButtonContainer.classList.add('active');
+        setupOrderButtonBlink();
+    } else {
+        orderButtonContainer.classList.remove('active');
+        removeOrderButtonBlink();
+    }
+
+    // Update order summary
+    orderSummaryCount.textContent = count;
+    orderSummaryTotal.textContent = calculateTotal() + '৳';
+
+    document.querySelectorAll('.product-card').forEach(card => {
+        const productId = parseInt(card.querySelector('button').getAttribute('data-id'));
+        if (cart.some(item => item.id === productId)) {
+            card.classList.add('in-cart');
+        } else {
+            card.classList.remove('in-cart');
+        }
+    });
+
+    document.querySelectorAll('.related-product-card').forEach(card => {
+        const productId = parseInt(card.querySelector('button').getAttribute('data-id'));
+        if (cart.some(item => item.id === productId)) {
+            card.classList.add('in-cart');
+        } else {
+            card.classList.remove('in-cart');
+        }
+    });
+}
+</script>
 
 <!-- Histats.com  START  (aync)-->
 	<script type="text/javascript">var _Hasync= _Hasync|| [];
